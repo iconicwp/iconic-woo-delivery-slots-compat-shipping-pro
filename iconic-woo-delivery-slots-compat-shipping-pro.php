@@ -103,7 +103,12 @@ function iconic_compat_phsp_get_method_id( $shipping_name, $ph = true ) {
  * @return array
  */
 function iconic_compat_phsp_get_zoneless_rates() {
-	$rates  = array();
+	$rates = array();
+	
+	if ( ! class_exists( 'wf_woocommerce_shipping_pro_method' ) ) {
+		return $rates;
+	}
+	
 	$method = new wf_woocommerce_shipping_pro_method();
 
 	if ( ! $method ) {
